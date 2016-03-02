@@ -6,11 +6,11 @@ public class Matrix{
 		this.rows=rows;
 		this.columns=columns;
 		this.matrix = new int[rows][columns];
-	};
+	}
 
 	public int getValueAt(int row, int column){
 		return this.matrix[row][column];
-	};
+	}
 
 	public void populateMatrix(int []values){
 		int counter=0;
@@ -20,17 +20,16 @@ public class Matrix{
 				counter++;
 			}
 		}
-	};
+	}
 
 	public Matrix addMatrices(Matrix matrix){
     Matrix result = new Matrix(this.rows,this.columns);
-		for(int i=0;i<this.rows;i++){
-			for (int j=0;j<this.columns;j++ ) {
-				result.matrix[i][j]=(this.getValueAt(i,j)+matrix.getValueAt(i,j));
+		for(int i=0;i<this.rows;i++)
+			for (int j = 0; j < this.columns; j++) {
+				result.matrix[i][j] = (this.getValueAt(i, j) + matrix.getValueAt(i, j));
 			}
-		}
     return result;
-	};
+	}
 
 	public Matrix multiplyMatrices(Matrix matrix){
     Matrix result = new Matrix(this.rows,matrix.columns);
@@ -42,9 +41,9 @@ public class Matrix{
             }
         }
         return result;
-	};
+	}
 
-    public String getStringRepresentation(Matrix matrix){
+	public String getStringRepresentation(Matrix matrix){
         String result="";
         for (int i=0;i<matrix.rows ;i++ ) {
             for (int j=0;j<matrix.columns ;j++ ) {
@@ -82,6 +81,6 @@ public class Matrix{
       	total += sign * (this.matrix[0][i]) * (newMatrix.getDeterminant());
       }
       return(total); 
-  };
+  }
 
-};
+}

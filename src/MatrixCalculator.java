@@ -7,7 +7,6 @@ import java.util.ArrayList;
 public class MatrixCalculator {
 
    private JFrame mainFrame;
-   private JLabel headerLabel;
    private JLabel statusLabel;
    private JPanel controlPanel;
    private JPanel controlPanel2;
@@ -28,14 +27,13 @@ public class MatrixCalculator {
 
    private void prepareGUI(){
       mainFrame = new JFrame("Matrix Calculator");
-      mainFrame.setSize(550,550);
+      mainFrame.setSize(450,200);
       mainFrame.setLayout(new GridLayout(1, 1));
       mainFrame.addWindowListener(new WindowAdapter() {
          public void windowClosing(WindowEvent windowEvent){
             System.exit(0);
          }        
       });    
-      headerLabel = new JLabel("Enter in matrix form:", JLabel.RIGHT);        
       statusLabel = new JLabel("",JLabel.CENTER);    
 
       controlPanel = new JPanel();
@@ -47,7 +45,6 @@ public class MatrixCalculator {
       resultPanel = new JPanel();
       resultPanel.setLayout(new FlowLayout());
 
-      mainFrame.add(headerLabel);
       mainFrame.add(controlPanel);
       mainFrame.add(controlPanel2);
       mainFrame.add(resultPanel);
@@ -62,7 +59,7 @@ public class MatrixCalculator {
       JScrollPane scrollPane = new JScrollPane(commentTextArea);    
       JButton createMatrixButton = new JButton("Create Mat A");
       JButton determinantButton = new JButton("Determinant");
-
+      createMatrixButton.setForeground(Color.RED);
       createMatrixButton.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) { 
             String dem = commentTextArea.getText();
@@ -98,6 +95,7 @@ public class MatrixCalculator {
       JScrollPane scrollPane = new JScrollPane(commentTextArea);    
       JButton createMatrixButton = new JButton("Create Mat B");
       JButton determinantButton = new JButton("Determinant");
+      createMatrixButton.setForeground(Color.RED);
       createMatrixButton.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) { 
             String dem = commentTextArea.getText();

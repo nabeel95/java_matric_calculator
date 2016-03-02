@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_java_matrix_calculator" default="compile.module.java_matrix_calculator">
+  <dirname property="module.java_matrix_calculator.basedir" file="${ant.file.module_java_matrix_calculator}"/>
+  
+  <property name="module.jdk.home.java_matrix_calculator" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.java_matrix_calculator" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.java_matrix_calculator" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.java_matrix_calculator" value="-encoding UTF-8 -source 1.7 -target 1.7 ${compiler.args}"/>
+  
+  <property name="java_matrix_calculator.output.dir" value="${module.java_matrix_calculator.basedir}/../out"/>
+  <property name="java_matrix_calculator.testoutput.dir" value="${module.java_matrix_calculator.basedir}/../../../../../test/java_matrix_calculator"/>
+  
+  <path id="java_matrix_calculator.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="java_matrix_calculator.module.production.classpath">
+    <path refid="${module.jdk.classpath.java_matrix_calculator}"/>
+  </path>
+  
+  <path id="java_matrix_calculator.runtime.production.module.classpath">
+    <pathelement location="${java_matrix_calculator.output.dir}"/>
+  </path>
+  
+  <path id="java_matrix_calculator.module.classpath">
+    <path refid="${module.jdk.classpath.java_matrix_calculator}"/>
+    <pathelement location="${java_matrix_calculator.output.dir}"/>
+  </path>
+  
+  <path id="java_matrix_calculator.runtime.module.classpath">
+    <pathelement location="${java_matrix_calculator.testoutput.dir}"/>
+    <pathelement location="${java_matrix_calculator.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.java_matrix_calculator">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.java_matrix_calculator">
+    <patternset refid="excluded.from.module.java_matrix_calculator"/>
+  </patternset>
+  
+  <path id="java_matrix_calculator.module.sourcepath">
+    <dirset dir="${module.java_matrix_calculator.basedir}/../../java_matrix_calculator">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.java_matrix_calculator" depends="compile.module.java_matrix_calculator.production,compile.module.java_matrix_calculator.tests" description="Compile module java_matrix_calculator"/>
+  
+  <target name="compile.module.java_matrix_calculator.production" depends="register.custom.compilers" description="Compile module java_matrix_calculator; production classes">
+    <mkdir dir="${java_matrix_calculator.output.dir}"/>
+    <javac2 destdir="${java_matrix_calculator.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.java_matrix_calculator}/javac">
+      <compilerarg line="${compiler.args.java_matrix_calculator}"/>
+      <bootclasspath refid="java_matrix_calculator.module.bootclasspath"/>
+      <classpath refid="java_matrix_calculator.module.production.classpath"/>
+      <src refid="java_matrix_calculator.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.java_matrix_calculator"/>
+    </javac2>
+    
+    <copy todir="${java_matrix_calculator.output.dir}">
+      <fileset dir="${module.java_matrix_calculator.basedir}/../src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.java_matrix_calculator.tests" depends="register.custom.compilers,compile.module.java_matrix_calculator.production" description="compile module java_matrix_calculator; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.java_matrix_calculator" description="cleanup module">
+    <delete dir="${java_matrix_calculator.output.dir}"/>
+    <delete dir="${java_matrix_calculator.testoutput.dir}"/>
+  </target>
+</project>
